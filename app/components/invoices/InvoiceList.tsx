@@ -27,16 +27,14 @@ const InvoiceList: React.FC = () => {
               <th className="py-3 px-6 border-b border-gray-300 text-left text-gray-700">
                 Date
               </th>
-            
             </tr>
           </thead>
           <tbody>
-            {isLoading ? (
+            {data && isLoading ? (
               <tr className={classNames("text-center")}>
                 <td colSpan={6}>Loading...</td>
               </tr>
-            ) : (
-              data &&
+            ) : data && !data.includes(null as never) ? (
               data.map((invoice, index) => (
                 <tr
                   key={index + 1}
@@ -57,8 +55,12 @@ const InvoiceList: React.FC = () => {
                   <td className="py-4 px-6 border-b border-gray-300">
                     {invoice?.date}
                   </td>
-                                 </tr>
+                </tr>
               ))
+            ) : (
+              <tr className={classNames("text-center")}>
+                <td colSpan={6}>Data Not Found</td>
+              </tr>
             )}
           </tbody>
         </table>

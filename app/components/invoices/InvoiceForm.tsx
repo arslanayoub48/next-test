@@ -1,27 +1,21 @@
 "use client";
 import classNames from "classnames";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useCreateInvoice } from "@/app/hooks/mutations/invoices/useInvoice";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 const INITIAL_FORMDATA: IcreateInvoice = {
   description: "",
-  amount: 0,
+  amount: null,
   date: "",
   userId: 1,
 };
 
 const InvoiceForm = () => {
   const router = useRouter();
-  const { mutate, isSuccess } = useCreateInvoice();
+  const { mutate, isError } = useCreateInvoice();
   const [formData, setFormData] = useState(INITIAL_FORMDATA);
-
-  useEffect(() => {
-    if (isSuccess) {
-      router.push("/invoice");
-    }
-  }, [isSuccess, router]);
 
   const handleNavigate = () => {
     router.push("/invoice");
@@ -44,12 +38,17 @@ const InvoiceForm = () => {
   // submitting invoice data
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     if (!formData.amount || !formData.description || !formData.date) {
       return toast.error("Please fill the required fields");
     }
 
-    mutate(formData);
-    setFormData(INITIAL_FORMDATA);
+    if (isError) {
+      return toast.error("Something went wrong");
+    } else {
+      mutate({ ...formData, navigate: router });
+      setFormData(INITIAL_FORMDATA);
+    }
   };
 
   return (
@@ -74,6 +73,7 @@ const InvoiceForm = () => {
             Description:
           </label>
           <textarea
+            value={formData.description}
             name="description"
             id="description"
             onChange={handleChange}
@@ -90,6 +90,7 @@ const InvoiceForm = () => {
             Amount:
           </label>
           <input
+            value={formData?.amount ?? ""}
             name="amount"
             type="number"
             id="amount"
@@ -107,6 +108,7 @@ const InvoiceForm = () => {
             Date:
           </label>
           <input
+            value={formData.date}
             name="date"
             type="date"
             id="date"

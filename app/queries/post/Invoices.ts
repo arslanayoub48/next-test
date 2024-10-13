@@ -2,12 +2,15 @@ import axiosInstance from "@/app/utils/axios/AxiosInstance";
 import toast from "react-hot-toast";
 
 export const createInvoice = async (payload: IcreateInvoice) => {
+  const { navigate, ...rest } = payload;
   try {
-    await axiosInstance.post("/invoice", payload);
+    const data = await axiosInstance.post("/invoice", rest);
+    console.log(data, "dat lkjlkjlkj");
 
-    // if (data.status === 200 || data.statusText === "OK") {
-    toast.success("Collection Created Successfully");
-    // }
+    if (data.status === 201 || data.statusText === "Created") {
+      toast.success("Collection Created Successfully");
+      navigate?.push("/invoice");
+    }
   } catch (error: unknown) {
     if (error instanceof Error) {
       toast.error(error.message || "something went wrong!");
