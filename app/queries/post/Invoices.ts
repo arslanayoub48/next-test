@@ -5,7 +5,6 @@ export const createInvoice = async (payload: IcreateInvoice) => {
   const { navigate, ...rest } = payload;
   try {
     const data = await axiosInstance.post("/invoice", rest);
-    console.log(data, "dat lkjlkjlkj");
 
     if (data.status === 201 || data.statusText === "Created") {
       toast.success("Collection Created Successfully");

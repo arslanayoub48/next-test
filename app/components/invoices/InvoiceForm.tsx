@@ -21,6 +21,8 @@ const InvoiceForm = () => {
     router.push("/invoice");
   };
 
+  console.log(process.env.NEXT_PUBLIC_BASE_URL, "process.env.BASE_URL");
+
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
