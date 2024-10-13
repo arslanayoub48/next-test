@@ -27,9 +27,7 @@ const InvoiceList: React.FC = () => {
               <th className="py-3 px-6 border-b border-gray-300 text-left text-gray-700">
                 Date
               </th>
-              <th className="py-3 px-6 border-b border-gray-300 text-left text-gray-700">
-                Actions
-              </th>
+            
             </tr>
           </thead>
           <tbody>
@@ -59,21 +57,7 @@ const InvoiceList: React.FC = () => {
                   <td className="py-4 px-6 border-b border-gray-300">
                     {invoice?.date}
                   </td>
-                  <td className="py-4 px-6 border-b border-gray-300 flex space-x-2">
-                    <button
-                      // onClick={() => handleEdit(invoice.id)}
-                      className="text-blue-500 hover:text-blue-700 font-semibold"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      // onClick={() => handleDelete(invoice.id)}
-                      className="text-red-500 hover:text-red-700 font-semibold"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
+                                 </tr>
               ))
             )}
           </tbody>

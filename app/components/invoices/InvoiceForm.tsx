@@ -9,7 +9,7 @@ const INITIAL_FORMDATA: IcreateInvoice = {
   description: "",
   amount: 0,
   date: "",
-  userId: Date.now(),
+  userId: 1,
 };
 
 const InvoiceForm = () => {
