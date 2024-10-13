@@ -53,88 +53,74 @@ const InvoiceForm = () => {
   };
 
   return (
-    <div className={classNames("flex border h-screen bg-gray-100")}>
-      <div
-        className={classNames(
-          "w-[32%] min-w-[300px] mx-auto my-auto p-4 bg-white rounded shadow-md"
-        )}
-      >
-        <h2
-          className={classNames(
-            "text-lg font-bold mb-4 text-center text-gray-700"
-          )}
-        >
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      <div className="w-full max-w-lg p-8 bg-white rounded-lg shadow-lg">
+        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">
           Create Invoice
         </h2>
-        <div className="mb-4">
-          <label
-            htmlFor="description"
-            className={classNames("block text-gray-700 text-sm font-bold mb-2")}
-          >
-            Description:
-          </label>
-          <textarea
-            name="description"
-            id="description"
-            onChange={handleChange}
-            className={classNames(
-              "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-40"
-            )}
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="amount"
-            className={classNames("block text-gray-700 text-sm font-bold mb-2")}
-          >
-            Amount:
-          </label>
-          <input
-            name="amount"
-            type="number"
-            id="amount"
-            onChange={handleChange}
-            className={classNames(
-              "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            )}
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="date"
-            className={classNames("block text-gray-700 text-sm font-bold mb-2")}
-          >
-            Date:
-          </label>
-          <input
-            name="date"
-            type="date"
-            id="date"
-            onChange={handleChange}
-            className={classNames(
-              "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            )}
-          />
-        </div>
-        <div className={classNames("flex justify-center gap-2 flex-col")}>
-          <button
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            onClick={(e: any) => handleSubmit(e)}
-            className={classNames(
-              "bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full hover:bg-white border transition-all duration-200 hover:text-blue-700 hover:border-blue-700"
-            )}
-          >
-            Create Invoice
-          </button>
-          <button
-            onClick={handleNavigate}
-            className={classNames(
-              " border border-blue-700  transition-all duration-200 text-blue-700 hover:border-blue-700 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
-            )}
-          >
-            Invoice List
-          </button>
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-6">
+            <label
+              htmlFor="description"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Description:
+            </label>
+            <textarea
+              name="description"
+              id="description"
+              onChange={handleChange}
+              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 h-32 resize-none shadow-sm"
+              placeholder="Enter invoice description..."
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              htmlFor="amount"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Amount:
+            </label>
+            <input
+              name="amount"
+              type="number"
+              id="amount"
+              onChange={handleChange}
+              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
+              placeholder="Enter amount"
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              htmlFor="date"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Date:
+            </label>
+            <input
+              name="date"
+              type="date"
+              id="date"
+              onChange={handleChange}
+              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
+            />
+          </div>
+          <div className="space-y-4">
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-md hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 shadow-lg"
+            >
+              Create Invoice
+            </button>
+            <button
+              type="button"
+              onClick={handleNavigate}
+              className="w-full bg-transparent border border-blue-600 text-blue-600 font-semibold py-3 px-4 rounded-md hover:bg-blue-600 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            >
+              Invoice List
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
